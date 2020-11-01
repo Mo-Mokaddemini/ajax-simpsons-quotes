@@ -32,21 +32,20 @@
   <script>
 
 function fetchJSON() {
-  const url = `https://simpsons-quotes-api.herokuapp.com/quotes`;
-  axios.get(url)
+  
+  axios.get(`https://simpsons-quotes-api.herokuapp.com/quotes`)
     .then(function(response) {
-      return response.data;
-      console.log(response.data); 
+      return response.data; 
     })
-    .then(function(response) {
-      console.log('data decoded from JSON:', response);
+    .then(function(simpson) {
+      console.log('data decoded from JSON:', simpson);
       const quoteHtml = `
         <figure>
-          <img src=${response[0].image}>
+          <img src=${simpson[0].image}>
         </figure>
         <figcaption>
-          <p><strong>${response[0].quote}</strong></p>
-          <cite>${response[0].character}</cite>
+          <p><strong>${simpson[0].quote}</strong></p>
+          <cite>${simpson[0].character}</cite>
         </figcaption>
       `;
       document.querySelector('#simpsons').innerHTML = quoteHtml;
